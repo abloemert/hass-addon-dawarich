@@ -1,0 +1,32 @@
+name: Dawarich
+version: 0.1.16
+slug: dawarich
+description: Self-hostable alternative to Google Location History (Google Maps Timeline)
+url: https://dawarich.app
+arch:
+- amd64
+- aarch64
+homeassistant_api: true
+#auth_api: true
+#host_network: true
+ingress: true
+ingress_port: 3000
+panel_icon: mdi:map-marker
+panel_title: Dawarich
+panel_admin: false
+init: false
+advanced: true
+stage: experimental
+tmpfs: true
+options:
+  db_host: 77b2833f-timescaledb
+  db_user: postgres
+  db_pass: postgres
+  db_name: dawarich
+  hosts: localhost
+schema:
+  db_host: str
+  db_user: str
+  db_pass: password
+  db_name: str
+  hosts: str
