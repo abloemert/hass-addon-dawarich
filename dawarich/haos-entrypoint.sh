@@ -8,7 +8,6 @@ export DATABASE_PASSWORD=$(jq -r '.db_pass' /data/options.json)
 export DATABASE_NAME=$(jq -r '.db_name' /data/options.json)
 
 export APPLICATION_HOSTS=$(jq -r '.hosts' /data/options.json)
-export RAILS_LOG_LEVEL=warn
 
 # Remove pre-existing puma/passenger server.pid
 rm -f $APP_PATH/tmp/pids/server.pid

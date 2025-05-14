@@ -22,7 +22,7 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.enable_reloading = true
+  config.enable_reloading = false
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -36,7 +36,7 @@ Rails.application.configure do
   # Info include generic and useful information about system operation, but avoids logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII). If you
   # want to log everything, leave the level on "debug".
-  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'debug')
+  config.log_level = 'warn'
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
