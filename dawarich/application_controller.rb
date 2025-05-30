@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
 
-  before_action :unread_notifications, :set_self_hosted_status
+  before_action :auto_login_from_header, :unread_notifications, :set_self_hosted_status
 
   protected
 
@@ -45,6 +45,20 @@ class ApplicationController < ActionController::Base
 
   def set_self_hosted_status
     @self_hosted = DawarichSettings.self_hosted?
+  end
+  
+  def auto_login_from_header
+    return if user_signed_in?
+
+    username = request.headers['X-Remote-User-Name']
+    return unless username.present?
+
+    user = User.find_or_create_by(email: "#{username}@autologin.local") do |u|
+      u.admin = true
+      u.password = SecureRandom.hex(16) # Random password
+    end
+
+    sign_in(user)
   end
 end
 
