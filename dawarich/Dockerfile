@@ -1,4 +1,4 @@
-FROM freikin/dawarich:0.26.0
+FROM freikin/dawarich:0.26.7
 
 RUN apk -U add --no-cache \
     jq \
