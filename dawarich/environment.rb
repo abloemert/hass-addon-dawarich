@@ -38,21 +38,9 @@ Rails.application.configure do
   # want to log everything, leave the level on "debug".
   config.log_level = 'warn'
 
-  # Enable/disable caching. By default caching is disabled.
-  # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
-    config.action_controller.perform_caching = true
-    config.action_controller.enable_fragment_cache_logging = true
-
-    config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
-    config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
-    }
-  else
-    config.action_controller.perform_caching = false
-
-    config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
-  end
+  # Disable caching
+  config.action_controller.perform_caching = false
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
 
   config.public_file_server.enabled = true
 
@@ -113,7 +101,7 @@ Rails.application.configure do
   config.lograge.enabled = true
   config.lograge.formatter = Lograge::Formatters::Json.new
 
-  config.active_storage.service = ENV['SELF_HOSTED'] == 'true' ? :local : :s3
+  config.active_storage.service = :local
 
   config.middleware.insert_before(0, IngressPath)
 end
