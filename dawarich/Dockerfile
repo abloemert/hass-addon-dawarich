@@ -8,8 +8,6 @@ COPY ./haos-entrypoint.sh /usr/local/bin/haos-entrypoint.sh
 RUN chmod +x /usr/local/bin/haos-entrypoint.sh
 
 COPY ./environment.rb config/environments/development.rb
-COPY ./assets.rb config/initializers/assets.rb
-COPY ./application_controller.rb app/controllers/application_controller.rb
 
 ENTRYPOINT [ "haos-entrypoint.sh" ]
 

@@ -8,8 +8,8 @@ arch:
 - aarch64
 homeassistant_api: true
 auth_api: true
-ingress: true
-ingress_port: 3000
+ports:
+  3000/tcp: 10555
 watchdog: http://[HOST]:[PORT:3000]/api/v1/health
 panel_icon: mdi:map-marker
 panel_title: Dawarich
