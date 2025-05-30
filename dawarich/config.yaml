@@ -11,9 +11,6 @@ auth_api: true
 ports:
   3000/tcp: 10555
 watchdog: http://[HOST]:[PORT:3000]/api/v1/health
-panel_icon: mdi:map-marker
-panel_title: Dawarich
-panel_admin: false
 init: false
 options:
   db_host: 77b2833f-timescaledb
