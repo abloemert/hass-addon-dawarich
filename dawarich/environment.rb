@@ -12,6 +12,8 @@ class IngressPath
     if ingress_path && !ingress_path.empty?
       env['SCRIPT_NAME'] = ingress_path
     end
+    # host = env['HTTP_X_FORWARDED_HOST']
+    # proto = env['HTTP_X_FORWARDED_PROTO']
     @app.call(env)
   end
 end
