@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     redis \
     && rm -rf /var/lib/apt/lists/*
 
+COPY ./redis.conf /etc/redis.conf
+
 COPY ./haos-entrypoint.sh /usr/local/bin/haos-entrypoint.sh
 RUN chmod +x /usr/local/bin/haos-entrypoint.sh
 

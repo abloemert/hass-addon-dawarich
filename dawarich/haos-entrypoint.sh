@@ -24,7 +24,7 @@ export STORE_GEODATA=true
 rm -f $APP_PATH/tmp/pids/server.pid
 
 echo "🚀 Starting redis server..."
-redis-server &
+redis-server /etc/redis.conf &
 
 # Wait for the database to become available
 echo "⏳ Waiting for redis to be ready..."
