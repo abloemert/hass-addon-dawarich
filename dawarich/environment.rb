@@ -2,6 +2,22 @@
 
 require 'active_support/core_ext/integer/time'
 
+class IngressPath
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    ingress_path = env['HTTP_X_INGRESS_PATH']
+    if ingress_path && !ingress_path.empty?
+      env['SCRIPT_NAME'] = ingress_path
+    end
+    # host = env['HTTP_X_FORWARDED_HOST']
+    # proto = env['HTTP_X_FORWARDED_PROTO']
+    @app.call(env)
+  end
+end
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -70,7 +86,9 @@ Rails.application.configure do
   config.action_view.annotate_rendered_view_with_filenames = true
 
   # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
+  config.action_cable.disable_request_forgery_protection = true
+  
+  config.action_controller.forgery_protection_origin_check = false
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
@@ -86,4 +104,6 @@ Rails.application.configure do
   config.lograge.formatter = Lograge::Formatters::Json.new
 
   config.active_storage.service = :local
+
+  config.middleware.insert_before(0, IngressPath)
 end

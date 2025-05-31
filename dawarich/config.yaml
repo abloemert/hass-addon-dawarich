@@ -8,8 +8,8 @@ arch:
 - aarch64
 homeassistant_api: true
 auth_api: true
-ports:
-  3000/tcp: 10555
+ingress: true
+ingress_port: 3000
 watchdog: http://[HOST]:[PORT:3000]/api/v1/health
 init: false
 options:
