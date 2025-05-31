@@ -1,8 +1,9 @@
 FROM freikin/dawarich:0.26.7
 
-RUN apk -U add --no-cache \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     jq \
-    redis
+    redis \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY ./haos-entrypoint.sh /usr/local/bin/haos-entrypoint.sh
 RUN chmod +x /usr/local/bin/haos-entrypoint.sh
