@@ -19,6 +19,8 @@ export DATABASE_NAME=$(jq -r '.db_name' /data/options.json)
 export APPLICATION_HOSTS=$(jq -r '.hosts' /data/options.json)
 
 export STORE_GEODATA=true
+export BACKGROUND_PROCESSING_CONCURRENCY=2
+export RAILS_MAX_THREADS=2
 
 # Remove pre-existing puma/passenger server.pid
 rm -f $APP_PATH/tmp/pids/server.pid
