@@ -1,5 +1,5 @@
 name: Dawarich
-version: 0.3.0
+version: 0.3.1
 slug: dawarich
 description: Self-hostable alternative to Google Location History (Google Maps Timeline)
 url: https://github.com/abloemert/hass-addon-dawarich.git
